@@ -20,7 +20,7 @@ Chapters.angular.factory('DataService', ['$document', '$http', function ($docume
 	};
 
 	pub.getXections = function () {
-		return $http.get('http://expedientes/data/skelet.json');
+		return $http.get(location.href + 'data/skelet.json');
 	};
 
 	return pub;
