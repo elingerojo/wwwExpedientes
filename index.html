@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Chapters">
+<html ng-app="ScoreApp">
   <head>
     
     <meta charset="utf-8">
@@ -21,7 +21,11 @@
     <script type="text/javascript" src="js/service/InitService.js"></script>
     <script type="text/javascript" src="js/service/DataService.js"></script>
     <script type="text/javascript" src="js/controller/IndexPageController.js"></script>
-    <script type="text/javascript" src="js/controller/DetailPageController.js"></script>
+      <script type="text/javascript" src="js/controller/ProfilePageController.js"></script>
+      <script type="text/javascript" src="js/controller/XectionPageController.js"></script>
+      <script type="text/javascript" src="js/controller/FormPageController.js"></script>
+	  <script src="js/lib/radialIndicator.js"></script>
+	  <script src="js/lib/angular.radialIndicator.js"></script>
     
   </head>
   <body>
@@ -34,36 +38,45 @@
         <div class="navbar no-border">
           <div class="navbar-inner">
             <div class="left"></div>
-            <div class="center sliding">Expediente</div>
+            <div class="center sliding">Perfiles</div>
             <div class="right"></div>
           </div>
-          <div class="navbar-inner cached" data-page="detailsPage">
-            <div class="left sliding">
-              <a href="index" class="link back">
-                <i class="icon icon-back"></i><span>Back</span>
-              </a>
+            <div class="navbar-inner cached" data-page="profilePage">
+                <div class="left sliding">
+                    <a href="index" class="link back">
+                        <i class="icon icon-back"></i><span>Regresar</span>
+                    </a>
+                </div>
+                <div class="center sliding">Expediente</div>
+                <div class="right"></div>
             </div>
-            <div class="center sliding">Detail page</div>
-            <div class="right"></div>
-          </div>
+            <div class="navbar-inner cached" data-page="xectionPage">
+                <div class="left sliding">
+                    <a href="profilePage" class="link back">
+                        <i class="icon icon-back"></i><span>Regresar</span>
+                    </a>
+                </div>
+                <div class="center sliding">Formas</div>
+                <div class="right"></div>
+            </div>
         </div>
         
         <!-- Pages -->
         <div class="pages navbar-through toolbar-through">
+
           
           <!-- Page 1 -->
           <div data-page="index" class="page" ng-controller="IndexPageController">
             <!-- Page content-->
             <div class="page-content">
 
-				<div class="content-block-title">OPCIONES GENERALES</div>			
 				<div class="list-block">
 					<ul>
 						<!-- Switch (Checkbox) -->
 						<li>
 						  <div class="item-content">
 							<div class="item-inner">
-							  <div class="item-title label">Modo demo</div>
+							  <div class="item-title label">Ver Ejemplos</div>
 							  <div class="item-input">
 								<label class="label-switch">
 								  <input id="demoSwitch" type="checkbox">
@@ -74,143 +87,220 @@
 						  </div>
 						</li>
 
-						<!-- Smart select item -->
-						<li>
-							<!-- Additional "smart-select" class -->
-							<a href="#" class="item-link smart-select">
-								<select name="fruits">
-									<option value="afirme" selected data-option-image="http://lorempixel.com/29/29/">Afirme</option>
-									<option value="banamex" data-option-image="http://lorempixel.com/29/29/?2">Banamex</option>
-									<option value="banorte" data-option-image="http://lorempixel.com/29/29/?3">Banorte</option>
-									<option value="bbva" data-option-image="http://lorempixel.com/29/29/?3">BBVA Bancomer</option>
-								</select>
-								<div class="item-content">
-									<div class="item-inner">
-										<div class="item-title">Banco</div>
-									</div>
-								</div>
-							</a>
-						</li>
-
-						<!-- Date -->
-						<li>
-							<div class="item-content">
-								<div class="item-inner">
-									<div class="item-title label">Nacimiento</div>
-									<div class="item-input">
-										<input type="date" placeholder="Fecha de Nacimiento">
-									</div>
-								</div>
-							</div>
-						</li>
 
 					</ul>
 				</div>   
 
-
-
-
 				<!-- List View -->
-				<div class="content-block-title">SECCIONES</div>
-				<div class="list-block accordion-list">
-				  <ul ng-repeat="xection in xections">
-					<li class="accordion-item"><a href="#" class="item-content item-link">
-						<div class="item-inner">
-						  <div class="item-title">{{$index + 1}}.- {{xection.label | uppercase}}</div>
-						</div></a>
-						<div class="accordion-item-content">
-							<div class="content-block">
-								<div class="list-block inset">
-									<ul ng-repeat="form in xection.forms | filter:query as filtered">
-										<li>
-										  <a href="#detailsPage" ng-click="onItemClicked(form)" class="item-link item-content">
-											<div class="item-media"><i class="icon {{form.iconClass}}"></i></div>
-											<div class="item-inner">
-											  <div class="item-title">{{form.label}}</div>
-											  <div class="item-after"><span class="badge">0/{{filtered.length}}</span></div>
-											</div>
-										  </a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</li>
+				<div class="content-block-title">PERFILES</div>
+				<div class="list-block media-list">
+				  <ul ng-repeat="profile in profiles">
+					  <li>
+						  <a href="#profilePage" ng-click="onProfileClicked(profile)" class="item-link item-content">
+							  <div class="item-media"><img ng-src="img/profiles/{{profile.image}}" width="44"></div>
+							  <div class="item-inner">
+								  <div class="item-title-row">
+									  <div class="item-title">{{profile.shortname}}</div>
+								  </div>
+								  <div class="item-subtitle">{{profile.description}}</div>
+							  </div>
+						  </a>
+					  </li>
+
 				  </ul>
 				</div>
 			</div>
 		  </div>
 
-				
-          <!-- Page 2 -->
-          <div data-page="detailsPage" class="page cached" ng-controller="DetailPageController">
-            <!-- Page content-->
-			  <div class="content-block-title">{{form.label}}</div>
-			  <div class="list-block">
-				  <ul ng-repeat="field in form.fields">
-
-					  <li>
-						  <div class="item-content">
-							  <div class="item-inner">
-								  <div class="item-title label">{{field.label}}</div>
-								  <div class="item-input">
 
 
-									  <div ng-switch="field.type">
-										  <div ng-switch-when="text">
-											  <input type="text" name="{{field.name}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
-										  </div>
-										  <div ng-switch-when="select">
-											  <a href="#" class="item-link smart-select">
-												  <!-- select -->
-												  <select  ng-repeat="option in field.options" name="{{field.name}}">
-													  <option value="{{option.value}}">{{option.label}}</option>
-												  </select>
-												  <div class="item-content">
-													  <div class="item-inner">
-														  <!-- Select label -->
-														  <div class="item-title">{{field.label}}</div>
-														  <!-- Selected value, not required -->
-														  <div class="item-after">{{field.value}}</div>
-													  </div>
-												  </div>
-											  </a>
-										  </div>
-										  <div ng-switch-when="date">
-											  <input type="date" name="{{field.name}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
-										  </div>
-										  <div ng-switch-when="switch">
-											  <label class="label-switch">
-												  <input type="checkbox" name="{{field.name}}" value="{{field.value}}">
-												  <div class="checkbox"></div>
-											  </label>
-										  </div>
-										  <div ng-switch-when="checkbox">
-											  <input type="checkbox" name="{{field.name}}" value="{{field.value}}">
-											  <div class="checkbox"></div>
-										  </div>
-										  <div ng-switch-when="textarea">
-											  <div class="item-input">
-												  <textarea name="{{field.name}}">{{field.value}}</textarea>
-											  </div>
-										  </div>
-										  <div ng-switch-default>
-											  <input type="text" name="{{field.name}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
-										  </div>
-									  </div>
+
+            <!-- Page 2 -->
+            <div data-page="profilePage" class="page cached" ng-controller="ProfilePageController">
+                <!-- Page content-->
+                <div class="page-content">
+
+                    <div class="list-block">
+                        <ul>
+                            <!-- Smart select item -->
+                            <li>
+                                <!-- Additional "smart-select" class -->
+                                <a href="#" class="item-link smart-select">
+                                    <select name="fruits">
+                                        <option value="afirme" selected data-option-image="http://lorempixel.com/29/29/">Afirme</option>
+                                        <option value="banamex" data-option-image="http://lorempixel.com/29/29/?2">Banamex</option>
+                                        <option value="banorte" data-option-image="http://lorempixel.com/29/29/?3">Banorte</option>
+                                        <option value="bbva" data-option-image="http://lorempixel.com/29/29/?3">BBVA Bancomer</option>
+                                    </select>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Banco</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
 
 
-								  </div>
-							  </div>
-						  </div>
-					  </li>
 
-				  </ul>
-			  </div>
-          </div>
-		<!-- End Page 2 -->
 
-        </div>
+                    <!-- List View -->
+                    <div class="content-block-title">SECCIONES</div>
+                    <div class="list-block media-list">
+                        <ul>
+                            <li ng-repeat="xection in profile.xections">
+                                <a href="#xectionPage" ng-click="onXectionClicked(xection, $index)" class="item-link item-content">
+                                    <div class="item-media">
+                                        <div data-radial-indicator="{
+                                            radius : 24,
+                                            percentage :true,
+                                            barBgColor: '#a9dffc',
+                                            barColor : '#65acc9',
+                                            initValue : {{xection.gagevalue}}
+                                        }" data-radial-indicator-id="indicator_{{$index}}"></div>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">{{xection.title | uppercase}}</div>
+                                        </div>
+                                        <div class="item-subtitle">{{xection.subtitle}}</div>
+                                        <div class="item-text">Lorem ipsum dolor sit amet...</div>
+                                    </div>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page 2 -->
+
+
+            <!-- Page 3 -->
+            <div data-page="xectionPage" class="page cached" ng-controller="XectionPageController">
+                <!-- Page content-->
+                <div class="page-content">
+                    <!-- List View -->
+                    <div class="content-block-title">FORMAS</div>
+                    <div class="list-block media-list">
+                        <ul>
+                            <li ng-repeat="form in xection.forms">
+                                <a href="#formPage" ng-click="onFormClicked(form, indicatorParentBranchLabel+'_'+$index)" class="item-link item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">{{form.label}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="item-media">
+                                        <div data-radial-indicator="{
+                                            radius : 12,
+                                            percentage :true,
+                                            barWidth: 3,
+                                            barBgColor: '#a9dffc',
+                                            barColor : '#65acc9',
+                                            initValue : {{xection.gagevalue}}
+                                        }" data-radial-indicator-id="indicator_{{indicatorParentBranchLabel}}_{{$index}}"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page 3 -->
+
+
+            <!-- Page 4 -->
+			<div data-page="formPage" class="page cached" ng-controller="FormPageController">
+				<!-- Page content-->
+                <div class="page-content">
+                    <!-- List View -->
+                    <div class="list-block">
+                        <ul>
+                            <li ng-repeat="field in form.fields">
+                                <!-- radial indicator -->
+                                <div class="card" ng-if="$first">
+                                    <div class="card-header">{{form.label}}</div>
+                                    <div class="card-content">
+                                        <div class="card-content-inner">
+                                            <div data-radial-indicator="{
+                                            radius : 90,
+                                            percentage :true,
+                                            barWidth: 7,
+                                            barBgColor: '#a9dffc',
+                                            barColor : '#65acc9',
+                                        }" data-radial-indicator-id="indicator_{{indicatorParentBranchLabel}}_{{$index}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">{{form.description}}</div>
+                                </div>
+
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">{{field.label}}</div>
+                                        <div class="item-input">
+
+
+                                            <div ng-switch="field.type">
+                                                <div ng-switch-when="text">
+                                                    <input type="text" name="{{field.name}}" placeholder="{{field.placeholder}}"
+                                                           ng-model="field.value" ng-change="fieldChanged(form, indicatorParentBranchLabel)"  show-errors>
+                                                    <div class="help-block" ng-if="name.$error.required">The user's name is required</div>
+                                                </div>
+                                                <div ng-switch-when="select">
+                                                    <a href="#" class="item-link smart-select">
+                                                        <!-- select -->
+                                                        <select  ng-repeat="option in field.options" name="{{field.name}}">
+                                                            <option value="{{option.value}}">{{option.label}}</option>
+                                                        </select>
+                                                        <div class="item-content">
+                                                            <div class="item-inner">
+                                                                <!-- Select label -->
+                                                                <div class="item-title">{{field.label}}</div>
+                                                                <!-- Selected value, not required -->
+                                                                <div class="item-after">{{field.value}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div ng-switch-when="date">
+                                                    <input type="date" name="{{field.name}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
+                                                </div>
+                                                <div ng-switch-when="switch">
+                                                    <label class="label-switch">
+                                                        <input type="checkbox" name="{{field.name}}" value="{{field.value}}">
+                                                        <div class="checkbox"></div>
+                                                    </label>
+                                                </div>
+                                                <div ng-switch-when="checkbox">
+                                                    <input type="checkbox" name="{{field.name}}" value="{{field.value}}">
+                                                    <div class="checkbox"></div>
+                                                </div>
+                                                <div ng-switch-when="textarea">
+                                                    <div class="item-input">
+                                                        <textarea name="{{field.name}}">{{field.value}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div ng-switch-default>
+                                                    <input type="text" name="{{field.name}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+			</div>
+			<!-- End Page 4 -->
+
+		</div>
       </div>
     </div>
   </body>

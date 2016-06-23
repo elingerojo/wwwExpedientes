@@ -1,20 +1,21 @@
 /*jslint browser: true*/
-/*global console, Chapters*/
+/*global console, ScoreApp*/
 
-Chapters.angular.controller('IndexPageController', ['$scope', '$http', 'InitService', 'DataService',
+ScoreApp.angular.controller('IndexPageController', ['$scope', '$http', 'InitService', 'DataService',
 	function ($scope, $http, InitService, DataService) {
 		'use strict';
 		
-		$scope.onItemClicked = function (form) {
-			DataService.movieClicked(form);
+		$scope.onProfileClicked = function (profile) {
+			DataService.profileClicked(profile);
 		};
 
+		// Register the DataService to getProfiles using $http to the ready event
 		InitService.addEventListener('ready', function () {
-			DataService.getXections().then(function (result) {
+			DataService.getProfiles().then(function (result) {
 				console.log(result);
-				$scope.xections = result.data.xections;
+				$scope.profiles = result.data.profiles;
 			}, function (err) {
-				console.error("Xections data: ", err.statusText)
+				console.error("Profiles data: ", err.statusText)
 			});
 		});
 	}

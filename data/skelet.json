@@ -1,143 +1,170 @@
 {
-  "version": "0.1",
-  "xections": [
+  "showdemos": true,
+  "profiles": [
     {
-      "name": "personals",
-      "label": "Datos Personales",
-      "forms": [
+      "shortname": "Ejemplo - Luis",
+      "description": "Estudiante",
+      "image": "luis01.jpg",
+      "type": "demo",
+      "version": "0.1",
+      "xections": [
         {
-          "name": "generals",
-          "label": "Generales",
-          "iconClass": "icon-form-name",
-          "fields": [
+          "name": "personals",
+          "title": "Datos Personales",
+          "subtitle": "del Titular",
+          "gagevalue": 0,
+          "forms": [
             {
-              "name": "name",
-              "label": "Nombre",
-              "type": "text",
-              "placeholder": "Teclee su(s) nombres",
-              "example": "Ana María"
+              "name": "generals",
+              "label": "Generales",
+              "description": "Datos generales del solicitante",
+              "iconClass": "icon-form-name",
+              "fields": [
+                {
+                  "name": "name",
+                  "label": "Nombre",
+                  "type": "text",
+                  "required": true,
+                  "placeholder": "Teclee su(s) nombre(s)",
+                  "example": "Ana María"
+                },
+                {
+                  "name": "fatherLastName",
+                  "label": "Apellido Paterno",
+                  "type": "text",
+                  "required": true,
+                  "placeholder": "Teclee su apellido paterno",
+                  "example": "Rodríguez"
+                }
+              ]
             },
             {
-              "name": "fatherLastName",
-              "label": "Apellido Paterno",
-              "type": "text",
-              "placeholder": "Teclee su apellido paterno",
-              "example": "Rodríguez"
+              "name": "homeAddress",
+              "label": "Domicilio",
+              "description": "Direccion del domicilio donde vive el solicitante",
+              "iconClass": "icon-form-settings",
+              "fields": [
+                {
+                  "name": "streetName",
+                  "label": "Calle",
+                  "type": "text",
+                  "required": true,
+                  "placeholder": "Teclee la calle",
+                  "example": "Río Amazonas"
+                },
+                {
+                  "name": "streetNumberExt",
+                  "label": "Número Exterior",
+                  "type": "text",
+                  "placeholder": "Teclee el número exterior",
+                  "example": "31"
+                }
+              ]
+            },
+            {
+              "name": "otherAddress",
+              "label": "Trabajo/Escuela",
+              "description": "Direccion del lugar de trabajo o estudio del solicitante",
+              "iconClass": "icon-form-settings",
+              "fields": [
+                {
+                  "name": "streetName",
+                  "label": "Calle",
+                  "type": "text",
+                  "placeholder": "Teclee la calle",
+                  "example": "Río Amazonas"
+                },
+                {
+                  "name": "streetNumberExt",
+                  "label": "Número Exterior",
+                  "type": "text",
+                  "placeholder": "Teclee el número exterior",
+                  "example": "31"
+                }
+              ]
             }
           ]
         },
         {
-          "name": "homeAddress",
-          "label": "Domicilio",
-          "iconClass": "icon-form-settings",
-          "fields": [
+          "name": "reference",
+          "title": "Referencias",
+          "subtitle": "del Titular",
+          "gagevalue": "0",
+          "forms": [
             {
-              "name": "streetName",
-              "label": "Calle",
-              "type": "text",
-              "placeholder": "Teclee la calle",
-              "example": "Río Amazonas"
+              "name": "generals",
+              "label": "Generales",
+              "description": "Datos generales del solicitante",
+              "iconClass": "icon-form-name",
+              "fields": [
+                {
+                  "name": "name",
+                  "label": "Nombre",
+                  "type": "text",
+                  "placeholder": "Teclee su(s) nombre(s)",
+                  "example": "Ana María"
+                },
+                {
+                  "name": "fatherLastName",
+                  "label": "Apellido Paterno",
+                  "type": "text",
+                  "placeholder": "Teclee su apellido paterno",
+                  "example": "Rodríguez"
+                }
+              ]
             },
             {
-              "name": "streetNumberExt",
-              "label": "Número Exterior",
-              "type": "text",
-              "placeholder": "Teclee el número exterior",
-              "example": "31"
-            }
-          ]
-        },
-        {
-          "name": "otherAddress",
-          "label": "Trabajo/Escuela",
-          "iconClass": "icon-form-settings",
-          "fields": [
-            {
-              "name": "streetName",
-              "label": "Calle",
-              "type": "text",
-              "placeholder": "Teclee la calle",
-              "example": "Río Amazonas"
+              "name": "homeAddress",
+              "label": "Domicilio",
+              "iconClass": "icon-form-settings",
+              "fields": [
+                {
+                  "name": "streetName",
+                  "label": "Calle",
+                  "type": "text",
+                  "placeholder": "Teclee la calle",
+                  "example": "Río Amazonas"
+                },
+                {
+                  "name": "streetNumberExt",
+                  "label": "Número Exterior",
+                  "type": "text",
+                  "placeholder": "Teclee el número exterior",
+                  "example": "31"
+                }
+              ]
             },
             {
-              "name": "streetNumberExt",
-              "label": "Número Exterior",
-              "type": "text",
-              "placeholder": "Teclee el número exterior",
-              "example": "31"
+              "name": "otherAddress",
+              "label": "Trabajo/Escuela",
+              "iconClass": "icon-form-settings",
+              "fields": [
+                {
+                  "name": "streetName",
+                  "label": "Calle",
+                  "type": "text",
+                  "placeholder": "Teclee la calle",
+                  "example": "Río Amazonas"
+                },
+                {
+                  "name": "streetNumberExt",
+                  "label": "Número Exterior",
+                  "type": "text",
+                  "placeholder": "Teclee el número exterior",
+                  "example": "31"
+                }
+              ]
             }
           ]
         }
       ]
     },
     {
-      "name": "reference",
-      "label": "Referencias",
-      "forms": [
-        {
-          "name": "generals",
-          "label": "Generales",
-          "iconClass": "icon-form-name",
-          "fields": [
-            {
-              "name": "name",
-              "label": "Nombre",
-              "type": "text",
-              "placeholder": "Teclee su(s) nombres",
-              "example": "Ana María"
-            },
-            {
-              "name": "fatherLastName",
-              "label": "Apellido Paterno",
-              "type": "text",
-              "placeholder": "Teclee su apellido paterno",
-              "example": "Rodríguez"
-            }
-          ]
-        },
-        {
-          "name": "homeAddress",
-          "label": "Domicilio",
-          "iconClass": "icon-form-settings",
-          "fields": [
-            {
-              "name": "streetName",
-              "label": "Calle",
-              "type": "text",
-              "placeholder": "Teclee la calle",
-              "example": "Río Amazonas"
-            },
-            {
-              "name": "streetNumberExt",
-              "label": "Número Exterior",
-              "type": "text",
-              "placeholder": "Teclee el número exterior",
-              "example": "31"
-            }
-          ]
-        },
-        {
-          "name": "otherAddress",
-          "label": "Trabajo/Escuela",
-          "iconClass": "icon-form-settings",
-          "fields": [
-            {
-              "name": "streetName",
-              "label": "Calle",
-              "type": "text",
-              "placeholder": "Teclee la calle",
-              "example": "Río Amazonas"
-            },
-            {
-              "name": "streetNumberExt",
-              "label": "Número Exterior",
-              "type": "text",
-              "placeholder": "Teclee el número exterior",
-              "example": "31"
-            }
-          ]
-        }
-      ]
+      "shortname": "Ejemplo - Isabel",
+      "description": "Enfermera",
+      "image": "isabel01.jpg",
+      "type": "demo",
+      "version": "0.1"
     }
   ]
 }

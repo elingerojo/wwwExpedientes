@@ -1,15 +1,16 @@
 /*jslint browser: true*/
-/*global console, Chapters, angular, Framework7*/
+/*global console, ScoreApp, angular, Framework7*/
 
 // Init angular
-var Chapters = {};
+var ScoreApp = {};
 
-Chapters.config = {
+ScoreApp.config = {
 };
 
-Chapters.angular = angular.module('Chapters', []);
+//ScoreApp.angular = angular.module('ScoreApp', []);
+ScoreApp.angular = angular.module('ScoreApp', ['radialIndicator']);
 
-Chapters.fw7 = {
+ScoreApp.fw7 = {
   app : new Framework7({
     animateNavBackIcon: true
   }),

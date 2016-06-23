@@ -1,7 +1,7 @@
 /*jslint browser: true*/
-/*global console, Framework7, Chapters, $document*/
+/*global console, Framework7, ScoreApp, $document*/
 
-Chapters.angular.factory('InitService', ['$document', function ($document) {
+ScoreApp.angular.factory('InitService', ['$document', function ($document) {
   'use strict';
 
   var pub = {},
@@ -14,11 +14,12 @@ Chapters.angular.factory('InitService', ['$document', function ($document) {
   };
 
   function onReady() {
-    var fw7 = Chapters.fw7,
+    var fw7 = ScoreApp.fw7,
       i;
 
     fw7.views.push(fw7.app.addView('.view-main', fw7.options));
     
+    // Execute all listeners callback function registered to the ready event
     for (i = 0; i < eventListeners.ready.length; i = i + 1) {
       eventListeners.ready[i]();
     }
@@ -28,6 +29,7 @@ Chapters.angular.factory('InitService', ['$document', function ($document) {
   (function () {
     $document.ready(function () {
 
+      // if protocol is not http or https then is Cordova else is Web browser
       if (document.URL.indexOf("http://") === -1 && document.URL.indexOf("https://") === -1) {
         // Cordova
         console.log("Using Cordova/PhoneGap setting");
